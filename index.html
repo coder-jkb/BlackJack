@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackJack ♠️</title>
+</head>
+<body style="background-color:green;color:yellow;font-size: 1.5rem;">
+<div style="margin:15px 0;"><span style="background-color: yellow;color: black; padding: 5px; border-radius: 7px;" id="turn">Player's turn</span></div>
+<div id="player" style="padding: 10px 10px 5px 10px;">
+    <button id="player-hit" style="padding:10px;background-color:greenyellow;border-radius: 10px;" onclick="hitPlayer()">HIT</button>
+    <button id="player-miss" style="padding:10px;margin:0 10px;background-color:greenyellow;border-radius: 10px;" onclick="missPlayer('player')">MISS</button>
+    <b>Player</b>
+    <span id="player-total" style="padding:0 10px;"> Total: </span><br>
+</div>
+<hr style="border-color:greenyellow">
+
+<div id="dealer" style="padding: 10px 10px 5px 10px;">
+    <!-- <button id="dealer-hit" style="padding:10px;background-color:greenyellow;border-radius: 10px;" onclick="hitDealer()">HIT</button> -->
+    <b>Dealer</b>
+    <span id="dealer-total" style="padding:0 10px;"> Total: </span><br>
+</div>
+<script src="deck.js"></script>
+</body>
+</html>
