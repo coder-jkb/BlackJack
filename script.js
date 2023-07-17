@@ -249,7 +249,7 @@ function allIn() {
 // document.getElementById("dealer-hit").disabled = true; 
 
 function placeBet() {
-  let bet = document.getElementById("bet-amt").value;
+  bet = document.getElementById("bet-amt").value;
 
   if( bet % 50 == 0 && bet >= 50 && bet <= player_balance){
     player_balance = player_balance - bet;
