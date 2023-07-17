@@ -13,7 +13,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color:green;
+
+        background-image: url("bg.png");
+        background-repeat: repeat-y;
+        background-size: cover;
+        /* background-size: 1600px; */
         color:yellow;
         font-size: 1.5rem;
         font-family: 'Recursive', sans-serif;
@@ -24,8 +28,13 @@
         margin-bottom: 0px;
     }
     #turn-div{
-        margin:15px 0;
+        margin: 15px 0;
         line-height: 44px;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        
     }
     #turn{
         font-size: 1.5rem;
@@ -41,34 +50,45 @@
         font-weight: bolder;
         font-family: 'Handlee', cursive;
 
-        width: 80px;
-        padding:3px 10px;
+        width: 100px;
+        padding:5px 10px;
         margin:10px 0px;
         background-color:greenyellow;
         border-radius: 10px;
         border: none;
-        /* margin-bottom: 10px; */
     }
     #player, #dealer{
-        /* display: flex; */
-        /* flex-direction: column;  */
-        width: 95%;
+        opacity: 0.7;
+        background-color:green;
+        width: 55%;
         border-radius: 15px;
         text-shadow:2px 2px 2px black;
-        box-shadow:10px 10px 10px darkgreen;
+        box-shadow:5px 5px 5px darkgreen;
         padding: 10px 10px 5px 10px;
     }
     #dealer{
-        margin-top: 20px;
+        margin-top: 10px;
         border-top: none;
     }
     #player-total, #dealer-total{
         padding:0 10px;
     }
 
+    @media screen and (max-width: 700px) {
+        #player, #dealer{
+            width: 75%;
+        }
+    }
+
     @media screen and (max-width: 480px) {
         #turn{
             font-size: 1.2rem;
+        }
+        #turn-div{
+            width: 100%;
+        }
+        #player, #dealer{
+            width: 95%;
         }
     }
 </style>
@@ -80,7 +100,10 @@
     <b>Black Jack</b><span style="color:red"> ♦️</span>
     <span style="color:black">♣️</span>
 </h2>
-<div id="turn-div" ><span id="turn">Player's turn</span></div>
+<button id="replay-btn" class="player-btn" style="visibility: hidden;margin-bottom:0;" onclick="refresh(this)">Replay</button>
+<div id="turn-div" > 
+    <span id="turn">Player's turn</span>
+</div>
 <div id="player">
     <button id="player-hit" class="player-btn" onclick="hitPlayer()">Hit</button>
     <button id="player-miss" class="player-btn" onclick="missPlayer('player')">Pass</button><br>
@@ -94,6 +117,6 @@
     <b>Dealer</b>
     <span id="dealer-total"> Total: </span><br>
 </div>
-<script src="deck.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

@@ -48,7 +48,7 @@ for (let i = 0; i < 13; i++){
 function insertImage(card, parent) {
     let img = document.createElement("img");
     img.src = card.img;
-    img.height = "180";
+    img.height = "150";
     img.style.padding = "5px";
     parent.appendChild(img);
 }
@@ -75,7 +75,7 @@ function get_random_card(){
 function distribute_cards(){
   player = document.getElementById("player");
   dealer = document.getElementById("dealer");
-  player.style.backgroundColor = "darkgreen";
+  dealer.style.backgroundColor = "darkgreen";
   card1 = get_random_card();
   card2 = get_random_card();
   card3 = get_random_card();
@@ -108,16 +108,18 @@ function checkPlayerScore() {
   if (player_total == 21) {
     document.getElementById("player-hit").disabled = true;
     document.getElementById("player-miss").disabled = true;
-    document.getElementById("player").style.backgroundColor = "green";
-    document.getElementById("dealer").style.backgroundColor = "darkgreen";
+    document.getElementById("player").style.backgroundColor = "darkgreen";
+    document.getElementById("dealer").style.backgroundColor = "green";
     document.getElementById("turn").textContent = "Dealer's turn";
     dealerPlays();
   } else if (player_total > 21) {
     document.getElementById("player-hit").disabled = true;
     document.getElementById("player-miss").disabled = true;
-    document.getElementById("player").style.backgroundColor = "green";
-    document.getElementById("dealer").style.backgroundColor = "darkgreen";
+    document.getElementById("player").style.backgroundColor = "darkgreen";
+    document.getElementById("dealer").style.backgroundColor = "green";
     document.getElementById("turn").textContent = "Player BUST ! Dealer WON !!";
+    document.getElementById("turn-div").style.backgroundColor = "yellow";
+    document.getElementById("replay-btn").style.visibility = "visible";
   }
 }
 
@@ -144,8 +146,8 @@ function missPlayer() {
   document.getElementById("player-hit").disabled = true;
   document.getElementById("player-miss").disabled = true;
   // document.getElementById("dealer-hit").disabled = false;
-  document.getElementById("player").style.backgroundColor = "green";
-  document.getElementById("dealer").style.backgroundColor = "darkgreen";
+  document.getElementById("player").style.backgroundColor = "darkgreen";
+  document.getElementById("dealer").style.backgroundColor = "green";
   document.getElementById("turn").textContent = "Dealer's turn";
   dealerPlays();
 }
@@ -170,27 +172,28 @@ function dealerPlays() {
   while (dealer_total <= 17) {
     hitDealer();
   }
-
   // dealer's turn is over, Now its decision time
-  if (dealer_total > 21){
-    document.getElementById("turn").textContent = "Dealer BUST ! Player WON !!";
-  }
-  else if (player_total == dealer_total) {
+  if (player_total == dealer_total) {
     document.getElementById("turn").textContent = "It's a DRAW !!!";
-  }
-  else if (player_total > dealer_total && player_total == 21){
+  } else if (player_total == 21) {
     document.getElementById("turn").textContent = "Player got a Black Jack. Player WON!!";
-  }
-  else if (player_total < dealer_total && dealer_total == 21){
-    document.getElementById("turn").innerHTML = "<div>Dealer got a Black Jack.</div><div>Dealer WON!!</div>";
-    document.getElementById("turn").textContent = "<p>Player got a Black Jack.</p><p>Player WON!!<p>";
-  }
+  } else if (dealer_total == 21) {
+    document.getElementById("turn").textContent = "Dealer got a Black Jack. Dealer WON!!";
+  } else if (dealer_total > 21) {
+    document.getElementById("turn").textContent = "Dealer BUST ! Player WON !!";
+  } 
+  // else if (player_total < dealer_total && dealer_total == 21) {
+  //   document.getElementById("turn").textContent =
+  //     "Dealer got a Black Jack. Dealer WON!!";
+  // } 
   else if (player_total > dealer_total) {
     document.getElementById("turn").textContent = "Player WON !!";
-  }
-  else{
+  } else {
     document.getElementById("turn").textContent = "Dealer WON !!";
   }
+    
+  document.getElementById("turn-div").style.backgroundColor = "yellow";
+  document.getElementById("replay-btn").style.visibility = "visible";
 }
 
 // document.getElementById("dealer-hit").disabled = true; 
@@ -200,23 +203,6 @@ if (player_total >= 21) {
   document.getElementById("player-hit").disabled = true;
 }
 
-/*
-let heart = document.getElementById("heart");
-deck.Heart.forEach((card) => {
-  insertImage(card, heart);
-});
-
-let spade = document.getElementById("spade");
-deck.Spade.forEach((card) => {
-  insertImage(card, spade);
-});
-
-let club = document.getElementById("club");
-deck.Club.forEach((card) => {
-  insertImage(card, club);
-});
-
-let diamond = document.getElementById("diamond");
-deck.Diamond.forEach((card) => {
-  insertImage(card, diamond);
-});*/
+function refresh() {
+  window.location.reload("Refresh");
+}
