@@ -19,15 +19,16 @@
         font-family: 'Recursive', sans-serif;
         
     }
-    hr{
-        border-color:greenyellow;
+    h2{
+        margin-top: 10px;
+        margin-bottom: 0px;
     }
     #turn-div{
         margin:15px 0;
         line-height: 44px;
     }
     #turn{
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin: auto;
         background-color: yellow;
         color: black; 
@@ -68,6 +69,11 @@
 <body unselectable="on"
  onselectstart="return false;" 
  onmousedown="return false;">
+ <h2> 
+    <span style="color:black">♠️ </span><span style="color:red">♥️ </span>
+    <b>Black Jack</b><span style="color:red"> ♦️</span>
+    <span style="color:black">♣️</span>
+</h2>
 <div id="turn-div" ><span id="turn">Player's turn</span></div>
 <div id="player">
     <button id="player-hit" class="player-btn" onclick="hitPlayer()">Hit</button>
