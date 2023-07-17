@@ -168,37 +168,35 @@ function updateDealer(card) {
 }
 
 function dealerPlays() {
-  setTimeout(() => {
-    while (dealer_total <= 17) {
-      hitDealer();
-    }
+  while (dealer_total <= 17) {
+    hitDealer();
+  }
 
-    // dealer's turn is over, Now its decision time
-    if (dealer_total > 21){
-      // alert("Dealer BUST ! Player WON !!");
-      document.getElementById("turn").textContent = "Dealer BUST ! Player WON !!";
-    }
-    else if (player_total == dealer_total) {
-      // alert("It's a DRAW !!!");
-      document.getElementById("turn").textContent = "It's a DRAW !!!";
-    }
-    else if (player_total > dealer_total && player_total == 21){
-      // alert("Player got a Black Jack!!! Player WON !!!");
-      document.getElementById("turn").textContent = "Player got a Black Jack. Player WON!!";
-    }
-    else if (player_total < dealer_total && dealer_total == 21){
-      // alert("Dealer got a Black Jack!!! Dealer WON !!!");
-      document.getElementById("turn").textContent = "Dealer got a Black Jack. Dealer WON!!";
-    }
-    else if (player_total > dealer_total) {
-      // alert("Player has WON !!!");
-      document.getElementById("turn").textContent = "Player WON !!";
-    }
-    else{
-      // alert("Dealer has WON !!!");
-      document.getElementById("turn").textContent = "Dealer WON !!";
-    }
-  }, 500);
+  // dealer's turn is over, Now its decision time
+  if (dealer_total > 21){
+    // alert("Dealer BUST ! Player WON !!");
+    document.getElementById("turn").textContent = "Dealer BUST ! Player WON !!";
+  }
+  else if (player_total == dealer_total) {
+    // alert("It's a DRAW !!!");
+    document.getElementById("turn").textContent = "It's a DRAW !!!";
+  }
+  else if (player_total > dealer_total && player_total == 21){
+    // alert("Player got a Black Jack!!! Player WON !!!");
+    document.getElementById("turn").textContent = "Player got a Black Jack. Player WON!!";
+  }
+  else if (player_total < dealer_total && dealer_total == 21){
+    // alert("Dealer got a Black Jack!!! Dealer WON !!!");
+    document.getElementById("turn").textContent = "Dealer got a Black Jack. Dealer WON!!";
+  }
+  else if (player_total > dealer_total) {
+    // alert("Player has WON !!!");
+    document.getElementById("turn").textContent = "Player WON !!";
+  }
+  else{
+    // alert("Dealer has WON !!!");
+    document.getElementById("turn").textContent = "Dealer WON !!";
+  }
 }
 
 // document.getElementById("dealer-hit").disabled = true; 
