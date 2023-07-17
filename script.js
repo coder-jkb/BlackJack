@@ -14,7 +14,9 @@ let prefix = ["ace_of_",
           "king_of_"];
 
 let ext = '.png'
-let selected = []
+let selected = [];
+let player_cards = []
+let dealer_cards = []
 let player_total = 0; 
 let dealer_total = 0;
 let player_balance = 1000;
@@ -88,6 +90,8 @@ function distribute_cards(){
   insertImage(card3, dealer);
   player_total = card1.val + card2.val;
   dealer_total = card3.val
+  player_cards = [card1, card2];
+  dealer_cards = [card3];
   document.getElementById("player-total").textContent = player_total;
   document.getElementById("dealer-total").textContent = dealer_total;
   checkPlayerScore();
@@ -97,6 +101,7 @@ function hitPlayer() {
   player = document.getElementById('player-cards');
   card = get_random_card();
   insertImage(card, player);
+  player_cards[player_cards.length] = card;
   updatePlayer(card)
 }
 
@@ -114,6 +119,7 @@ function hitDealer() {
   dealer = document.getElementById("dealer-cards");
   card = get_random_card();
   insertImage(card, dealer);
+  dealer_cards[dealer_cards.length] = card;
   updateDealer(card);  
 }
 
@@ -130,23 +136,39 @@ function checkPlayerScore() {
     document.getElementById("player-miss").disabled = true;
     document.getElementById("player").style.backgroundColor = darkgreen;
     document.getElementById("dealer").style.backgroundColor = green;
-    document.getElementById("turn").textContent = "Player BUST ! Dealer WON !!";
+    document.getElementById("turn").textContent = `Player BUST! Dealer WON $${bet}!!`;
     document.getElementById("turn-div").style.backgroundColor = "yellow";
     document.getElementById("replay-btn").style.visibility = "visible";
   }
 }
 
 function updatePlayer(card) {
-  if (card.img.includes("ace")) {
-    
-    if (player_total + card.val > 21) {
-      // use 1 as value for ace
-      player_total = player_total + 1;
+  let num_aces = 0;
+  player_total = 0;
+  player_cards.forEach((card) => {
+    if (card.img.includes("ace")) {
+      num_aces += 1; // skip aces to decide value after adding for other cards
     } else {
-      player_total = player_total + card.val;
+      player_total += card.val;
     }
-  }
-  else{player_total = player_total + card.val;}
+    if (num_aces > 0) {
+      for (let i = 0; i < num_aces - 1; i++) {
+        if (player_total + 11 > 21) {
+          player_total += 1;
+        } else {
+          player_total += 11;
+        }
+      }
+      // last ace
+      if (player_total + 11 == 21) {
+        player_total += 11;
+      } else if (player_total + 1 == 21) {
+        player_total += 1;
+      } else if (player_total + 11 > 21) {
+        player_total += 1;
+      }
+    }
+  });
 
   document.getElementById("player-total").textContent = player_total;
 
@@ -154,18 +176,34 @@ function updatePlayer(card) {
 }
 
 function updateDealer(card) {
-
-  if (card.img.includes("ace")) {
-    
-    if (dealer_total + card.val > 21) {
-      // use 1 as value for ace
-      dealer_total = dealer_total + 1;
-    } else {
-      dealer_total = dealer_total + card.val;
+  let num_aces = 0;
+  dealer_total = 0;
+  dealer_cards.forEach(card => {
+    if (card.img.includes("ace")) {
+      num_aces += 1 // skip aces to decide value after adding for other cards
     }
-  }
-  else{dealer_total = dealer_total + card.val;}
-  document.getElementById("dealer-total").textContent = "Value: " + dealer_total;
+    else{
+      dealer_total+=card.val
+    }
+    if (num_aces > 0) {
+      for (let i = 0; i < num_aces-1; i++) {
+        if (dealer_total + 11 > 21){
+          dealer_total += 1;
+        }else{
+          dealer_total += 11;
+        }
+      }
+      // last ace
+      if (dealer_total + 11 == 21) {
+        dealer_total += 11;
+      } else if (dealer_total + 1 == 21) {
+        dealer_total += 1;
+      } else if (dealer_total + 11 > 21) {
+        dealer_total += 1;
+      }
+    }
+  });
+  document.getElementById("dealer-total").textContent = dealer_total;
 }
 
 function dealerPlays() {
@@ -178,28 +216,26 @@ function dealerPlays() {
     player_balance += bet;
     document.getElementById("balance-amt").textContent = player_balance;
   } else if (player_total == 21) {
-    document.getElementById("turn").textContent = "Player got a Black Jack. Player WON!!";
+    document.getElementById("turn").textContent = `Player got a Black Jack. Player WON $${bet}!!`;
     player_balance += 2*bet;
     document.getElementById("balance-amt").textContent = player_balance;
 
   } else if (dealer_total == 21) {
-    document.getElementById("turn").textContent = "Dealer got a Black Jack. Dealer WON!!";
+    document.getElementById(
+      "turn"
+    ).textContent = `Dealer got a Black Jack. Dealer WON $${bet}!!`;
   } else if (dealer_total > 21) {
-    document.getElementById("turn").textContent = "Dealer BUST ! Player WON !!";
+    document.getElementById("turn").textContent = `Dealer BUST! Player WON $${bet}!!`;
     player_balance += 2 * bet;
     document.getElementById("balance-amt").textContent = player_balance;
     
   } 
-  // else if (player_total < dealer_total && dealer_total == 21) {
-  //   document.getElementById("turn").textContent =
-  //     "Dealer got a Black Jack. Dealer WON!!";
-  // } 
   else if (player_total > dealer_total) {
-    document.getElementById("turn").textContent = "Player WON !!";
+    document.getElementById("turn").textContent = `Player WON $${bet}!!`;
     document.getElementById("balance-amt").textContent = player_balance;
     player_balance += 2 * bet;
   } else {
-    document.getElementById("turn").textContent = "Dealer WON !!";
+    document.getElementById("turn").textContent = `Dealer WON $${bet}!!`;
   }
     
   document.getElementById("turn-div").style.backgroundColor = "yellow";
@@ -243,6 +279,8 @@ function replay() {
   }else{
     // window.location.reload("Refresh");
     selected = [];
+    player_cards = [];
+    dealer_cards = [];
     player_total = 0;
     dealer_total = 0;
     player = document.getElementById("player-cards");

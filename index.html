@@ -29,7 +29,7 @@
     }
     #bet-amt{
         height: 25px;
-        width: 150px;
+        width: 100px;
         background-color: transparent;
         outline: none;
         border:none;
@@ -116,12 +116,14 @@
     <b>Black Jack</b><span style="color:red"> ♦️</span>
     <span style="color:black">♣️</span>
 </h2>
-<button id="replay-btn" class="player-btn" style="visibility: hidden;margin-bottom:0;" onclick="replay()">Replay</button>
-<span> Balance: $ <span id="balance-amt"></span></span> 
+
+<span> 
+    Balance: $ <span id="balance-amt" style="margin-right: 150px;"></span>
+    <button id="replay-btn" class="player-btn" style="visibility: hidden;margin-bottom:0;" onclick="replay()">Replay</button>
+</span> 
 <div id="form-box">
     <!-- <span> Balance: $</span><span id="balance-amt"></span> <br> -->
     <span> Bet: $<input id="bet-amt"  type="number" min="10" value="100" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"></span>
-    
 
     <button class="player-btn" style="width: 150px" onclick="placeBet()">Place Bet</button>
     <button class="player-btn" style="width: 100px" onclick="allIn()">All In</button>
