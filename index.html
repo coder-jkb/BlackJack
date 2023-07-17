@@ -42,10 +42,11 @@
 
         width: 80px;
         padding:3px 10px;
-        margin:0 5px;
+        margin:10px 0px;
         background-color:greenyellow;
         border-radius: 10px;
         border: none;
+        /* margin-bottom: 10px; */
     }
     #player, #dealer{
         /* display: flex; */
@@ -70,7 +71,7 @@
 <div id="turn-div" ><span id="turn">Player's turn</span></div>
 <div id="player">
     <button id="player-hit" class="player-btn" onclick="hitPlayer()">Hit</button>
-    <button id="player-miss" class="player-btn" onclick="missPlayer('player')">Pass</button>
+    <button id="player-miss" class="player-btn" onclick="missPlayer('player')">Pass</button><br>
     <b>Player</b>
     <span id="player-total"> Total: </span><br>
 </div>
