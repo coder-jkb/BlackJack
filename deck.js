@@ -107,12 +107,14 @@ function hitDealer() {
 function checkPlayerScore() {
   if (player_total == 21) {
     document.getElementById("player-hit").disabled = true;
+    document.getElementById("player-miss").disabled = true;
     document.getElementById("player").style.backgroundColor = "green";
     document.getElementById("dealer").style.backgroundColor = "darkgreen";
     document.getElementById("turn").textContent = "Dealer's turn";
     dealerPlays();
   } else if (player_total > 21) {
     document.getElementById("player-hit").disabled = true;
+    document.getElementById("player-miss").disabled = true;
     document.getElementById("player").style.backgroundColor = "green";
     document.getElementById("dealer").style.backgroundColor = "darkgreen";
     // alert("Player BUST ! Dealer has WON !!");
