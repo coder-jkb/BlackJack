@@ -25,7 +25,7 @@
     }
     h2{
         margin-top: 0px;
-        margin-bottom: 0px;
+        margin-bottom: 10px;
     }
     #bet-amt{
         height: 25px;
@@ -37,6 +37,9 @@
         color: yellow;
         font-size:1.5rem;
         /* border-radius: 10px; */
+    }
+    #form-box{
+        margin-top: 10%;
     }
     #game-box{
         width: 100%;
@@ -111,18 +114,18 @@
     }
 </style>
 <body>
- <h2> 
+<h2> 
     <span style="color:black">♠️ </span><span style="color:red">♥️ </span>
     <b>Black Jack</b><span style="color:red"> ♦️</span>
     <span style="color:black">♣️</span>
 </h2>
 
 <span> 
-    Balance: $ <span id="balance-amt" style="margin-right: 150px;"></span>
-    <button id="replay-btn" class="player-btn" style="visibility: hidden;margin-bottom:0;" onclick="replay()">Replay</button>
+    <input type="radio" id="AI" name="player-selection"  onchange="selectPlayer(this)" value="AI"> <label for="AI">AI player</label>
+    <input type="radio" id="Human" name="player-selection" onchange="selectPlayer(this)" value="Human" checked > <label for="Human">Huamn player</label>
 </span> 
 <div id="form-box">
-    <!-- <span> Balance: $</span><span id="balance-amt"></span> <br> -->
+    <span> Balance: $</span><span id="balance-amt"></span> <br>
     <span> Bet: $<input id="bet-amt"  type="number" min="10" value="100" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"></span>
 
     <button class="player-btn" style="width: 150px" onclick="placeBet()">Place Bet</button>
@@ -136,7 +139,8 @@
     </div>
     <div id="player">
         <button id="player-hit" class="player-btn" onclick="hitPlayer()">Hit</button>
-        <button id="player-miss" class="player-btn" onclick="missPlayer('player')">Pass</button><br>
+        <button id="player-miss" class="player-btn" onclick="missPlayer('player')">Pass</button>
+        <div id="AI-player" style="display:none;font-size: 2rem;">AI</div> <br>
         <b>Player</b>
         Total:<span id="player-total"></span>
         <span> Bet: $</span><span id="betted-amt"></span>

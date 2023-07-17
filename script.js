@@ -247,7 +247,6 @@ function allIn() {
 }
 
 // document.getElementById("dealer-hit").disabled = true; 
-
 function placeBet() {
   bet = document.getElementById("bet-amt").value;
 
@@ -267,7 +266,6 @@ function placeBet() {
   }
 
 }
-
 
 if (player_total >= 21) {
   document.getElementById("player-hit").disabled = true;
@@ -299,5 +297,23 @@ function replay() {
     document.getElementById("player").style.backgroundColor = green;
     document.getElementById("player-hit").disabled = false;
     document.getElementById("player-miss").disabled = false;
+  }
+}
+
+function selectPlayer(player_radio) {
+  // console.log(player_radio.value);
+  if( player_radio.value == 'AI'){
+    document.getElementById("player-hit").disabled = true;
+    document.getElementById("player-miss").disabled = true;
+    document.getElementById("player-hit").style.display = "none";
+    document.getElementById("player-miss").style.display = "none"; 
+    document.getElementById("AI-player").style.display = "block"; 
+  }
+  else{
+    document.getElementById("player-hit").disabled = false;
+    document.getElementById("player-miss").disabled = false;
+    document.getElementById("AI-player").style.display = "none";
+    document.getElementById("player-hit").style.display = "inline";
+    document.getElementById("player-miss").style.display = "inline"; 
   }
 }
