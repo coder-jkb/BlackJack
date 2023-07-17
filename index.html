@@ -27,6 +27,24 @@
         margin-top: 0px;
         margin-bottom: 0px;
     }
+    #bet-amt{
+        height: 25px;
+        width: 150px;
+        background-color: transparent;
+        outline: none;
+        border:none;
+        border-bottom: 1px solid yellow;
+        color: yellow;
+        font-size:1.5rem;
+        /* border-radius: 10px; */
+    }
+    #game-box{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        visibility: hidden;
+    }
     #turn-div{
         margin: 15px 0;
         line-height: 44px;
@@ -45,11 +63,10 @@
         border-radius: 7px;
     }
     .player-btn{
-        
         font-size: 25px;
         font-weight: bolder;
         font-family: 'Handlee', cursive;
-
+        cursor: pointer;
         width: 100px;
         padding:5px 10px;
         margin:10px 0px;
@@ -58,8 +75,9 @@
         border: none;
     }
     #player, #dealer{
-        opacity: 0.7;
-        background-color:green;
+        /* opacity: 0.8; */
+        opacity: 1;
+        background-color: rgba(0, 128, 0, 0.7);
         width: 55%;
         border-radius: 15px;
         text-shadow:2px 2px 2px black;
@@ -92,33 +110,45 @@
         }
     }
 </style>
-<body unselectable="on"
- onselectstart="return false;" 
- onmousedown="return false;">
+<body>
  <h2> 
     <span style="color:black">♠️ </span><span style="color:red">♥️ </span>
     <b>Black Jack</b><span style="color:red"> ♦️</span>
     <span style="color:black">♣️</span>
 </h2>
-<button id="replay-btn" class="player-btn" style="visibility: hidden;margin-bottom:0;" onclick="refresh(this)">Replay</button>
-<div id="turn-div" > 
-    <span id="turn">Player's turn</span>
-</div>
-<div id="player">
-    <button id="player-hit" class="player-btn" onclick="hitPlayer()">Hit</button>
-    <button id="player-miss" class="player-btn" onclick="missPlayer('player')">Pass</button><br>
-    <b>Player</b>
-    Total:<span id="player-total"></span>
-    <span> Balance: $</span><span id="balance-amt"></span>
-    <div id="player-cards"></div>
-</div>
-<!-- <hr> -->
+<button id="replay-btn" class="player-btn" style="visibility: hidden;margin-bottom:0;" onclick="replay()">Replay</button>
+<span> Balance: $ <span id="balance-amt"></span></span> 
+<div id="form-box">
+    <!-- <span> Balance: $</span><span id="balance-amt"></span> <br> -->
+    <span> Bet: $<input id="bet-amt"  type="number" min="10" value="100" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"></span>
+    
 
-<div id="dealer">
-    <!-- <button id="dealer-hit" style="padding:10px;background-color:greenyellow;border-radius: 10px;" onclick="hitDealer()">HIT</button> -->
-    <b>Dealer</b>
-     Total: <span id="dealer-total"></span><br>
-    <div id="dealer-cards"></div>
+    <button class="player-btn" style="width: 150px" onclick="placeBet()">Place Bet</button>
+    <button class="player-btn" style="width: 100px" onclick="allIn()">All In</button>
+</div>
+<div unselectable="on"
+ onselectstart="return false;" 
+ onmousedown="return false;" id="game-box">
+    <div id="turn-div" > 
+        <span id="turn">Player's turn</span>
+    </div>
+    <div id="player">
+        <button id="player-hit" class="player-btn" onclick="hitPlayer()">Hit</button>
+        <button id="player-miss" class="player-btn" onclick="missPlayer('player')">Pass</button><br>
+        <b>Player</b>
+        Total:<span id="player-total"></span>
+        <span> Bet: $</span><span id="betted-amt"></span>
+        <br>
+        <div id="player-cards"></div>
+    </div>
+    <!-- <hr> -->
+    
+    <div id="dealer">
+        <!-- <button id="dealer-hit" style="padding:10px;background-color:greenyellow;border-radius: 10px;" onclick="hitDealer()">HIT</button> -->
+        <b>Dealer</b>
+         Total: <span id="dealer-total"></span><br>
+        <div id="dealer-cards"></div>
+    </div>
 </div>
 <script src="script.js"></script>
 </body>
