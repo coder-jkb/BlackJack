@@ -117,7 +117,6 @@ function checkPlayerScore() {
     document.getElementById("player-miss").disabled = true;
     document.getElementById("player").style.backgroundColor = "green";
     document.getElementById("dealer").style.backgroundColor = "darkgreen";
-    // alert("Player BUST ! Dealer has WON !!");
     document.getElementById("turn").textContent = "Player BUST ! Dealer WON !!";
   }
 }
@@ -174,27 +173,22 @@ function dealerPlays() {
 
   // dealer's turn is over, Now its decision time
   if (dealer_total > 21){
-    // alert("Dealer BUST ! Player WON !!");
     document.getElementById("turn").textContent = "Dealer BUST ! Player WON !!";
   }
   else if (player_total == dealer_total) {
-    // alert("It's a DRAW !!!");
     document.getElementById("turn").textContent = "It's a DRAW !!!";
   }
   else if (player_total > dealer_total && player_total == 21){
-    // alert("Player got a Black Jack!!! Player WON !!!");
     document.getElementById("turn").textContent = "Player got a Black Jack. Player WON!!";
   }
   else if (player_total < dealer_total && dealer_total == 21){
-    // alert("Dealer got a Black Jack!!! Dealer WON !!!");
-    document.getElementById("turn").textContent = "Dealer got a Black Jack. Dealer WON!!";
+    document.getElementById("turn").innerHTML = "<div>Dealer got a Black Jack.</div><div>Dealer WON!!</div>";
+    document.getElementById("turn").textContent = "<p>Player got a Black Jack.</p><p>Player WON!!<p>";
   }
   else if (player_total > dealer_total) {
-    // alert("Player has WON !!!");
     document.getElementById("turn").textContent = "Player WON !!";
   }
   else{
-    // alert("Dealer has WON !!!");
     document.getElementById("turn").textContent = "Dealer WON !!";
   }
 }
