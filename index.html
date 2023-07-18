@@ -33,12 +33,15 @@
         top: 2px;
         border-radius: 5px;
     }
-    h2{
+    h2 {
         margin-top: 0px;
         margin-bottom: 10px;
         width: 100vw;
         text-align: center;
         background-color: rgba(100, 100, 100,0.25);
+        font-family: 'Handlee', cursive;
+        font-weight: bolder;
+        font-style: italic;
     }
     #bet-amt{
         height: 25px;
@@ -51,8 +54,28 @@
         font-size:1.5rem;
         /* border-radius: 10px; */
     }
+    .suggested-bets-div{
+        display: flex;
+        margin: 5px 0;
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .suggested-bets{
+        border: 1px solid yellow;
+        color: yellow;
+        font-size:1.5rem;
+        background-color:transparent;
+        border-radius: 25px;
+        padding:5px 10px;
+        margin:5px;
+        min-width: 80px;
+    }
+    .bet-btns{
+        display: inline;
+    }
     #form-box{
-        margin-top: 10%;
+        margin: 10% 5%;
     }
     #game-box{
         width: 100%;
@@ -147,6 +170,18 @@
             font-size:1.75rem;
             height: 45px;
         }
+        .bet-btns{
+            display: block;
+            margin-top:5px;
+        }
+        .suggested-bets-div{
+            width:90%;
+        }
+
+        /* utility classes */
+        .ml10{
+            margin-left: 10%;
+        }
     }
 </style>
 <body>
@@ -164,13 +199,23 @@
     </span>
 </span> 
 <div id="form-box">      
-    <span> 
+    <span class="ml10"> 
         Bet: $<input id="bet-amt"  type="number" min="10" value="100" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
     </span>
     
-    <button class="player-btn" style="width: 150px" onclick="placeBet()">Place Bet</button>
-    <button class="player-btn" style="width: 100px" onclick="allIn()">All In</button>
-    <br><br>
+    <div class="bet-btns ml10">
+        <button class="player-btn" style="width: 150px" onclick="placeBet()">Place Bet</button>
+        <button class="player-btn" style="width: 100px" onclick="allIn()">All In</button>
+    </div>
+    <br>
+    <div class="suggested-bets-div ml10">
+        <button class="suggested-bets" onclick="setBet(50)">$50</button>
+        <button class="suggested-bets" onclick="setBet(100)">$100</button>
+        <button class="suggested-bets" onclick="setBet(200)">$200</button>
+        <button class="suggested-bets" onclick="setBet(500)">$500</button>
+        <button class="suggested-bets" onclick="setBet(1000)">$1000</button>
+    </div>
+    <br>
     <input type="radio" id="AI" name="player-selection"  onchange="selectPlayer(this)" value="AI"> <label for="AI">AI player</label>
     <input type="radio" id="Human" name="player-selection" onchange="selectPlayer(this)" value="Human" checked > <label for="Human">Huamn player</label>
 </div>

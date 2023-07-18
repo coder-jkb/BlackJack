@@ -114,6 +114,7 @@ function hitDealer() {
 }
 
 function checkPlayerScore() {
+  // console.log(`checking player score ${player_total}`);
   if (player_total == 21) {
     document.getElementById("player-hit").disabled = true;
     document.getElementById("player-miss").disabled = true;
@@ -126,9 +127,13 @@ function checkPlayerScore() {
     document.getElementById("player-miss").disabled = true;
     document.getElementById("player").style.backgroundColor = darkgreen;
     document.getElementById("dealer").style.backgroundColor = green;
+    // console.log(`Player BUST! Dealer WON $${bet}!!`);
     document.getElementById("turn").textContent = `Player BUST! Dealer WON $${bet}!!`;
     document.getElementById("turn-div").style.backgroundColor = "yellow";
     document.getElementById("replay-btn").style.visibility = "visible";
+    // if (player_balance < 50) {
+    //   document.getElementById("replay-btn").disabled = true;
+    // }
   }
 }
 
@@ -230,10 +235,23 @@ function dealerPlays() {
     
   document.getElementById("turn-div").style.backgroundColor = "yellow";
   document.getElementById("replay-btn").style.visibility = "visible";
+
+  // if(player_balance < 50){
+  //   document.getElementById("replay-btn").disabled = true;
+  // }
 }
 
 function allIn() {
   document.getElementById("bet-amt").value = player_balance;
+}
+function setBet(amt) {
+  if (amt <= player_balance){
+    document.getElementById("bet-amt").value = amt;
+  }
+  else{
+    document.getElementById("bet-amt").value = "";
+    alert("Bet must be in the range of $50 and $" +player_balance);
+  }
 }
 
 // document.getElementById("dealer-hit").disabled = true; 
@@ -256,11 +274,13 @@ function placeBet() {
   }
 
   if (player_type == "AI") {
-    while (player_total <= 17) {
-      console.log("player hit");
+    while (player_total <= 15) {
+      // console.log("player hit");
       hitPlayer();
     }
-    missPlayer();
+    if (player_total < 21) {
+      missPlayer();
+    }
   }
 
 }
@@ -271,7 +291,8 @@ if (player_total >= 21) {
 
 function replay() {
   if (player_balance < 50){
-    alert("Player is out of balance. Game over!!")
+    document.getElementById("replay-btn").disabled = true;
+    alert("Player is out of balance. Game over!!");
   }else{
     // window.location.reload("Refresh");
     selected = [];
