@@ -210,9 +210,6 @@ function dealerPlays() {
   while (dealer_total <= 17) {
     hitDealer();
   }
-
-  player_total = 10;
-  dealer_total = 10;
   // dealer's turn is over, Now its decision time
   if (player_total == dealer_total) {
     document.getElementById("turn").textContent = "It's a DRAW !!!";
@@ -311,6 +308,11 @@ function selectPlayer(player_radio) {
     document.getElementById("player-hit").style.display = "none";
     document.getElementById("player-miss").style.display = "none"; 
     document.getElementById("AI-player").style.display = "block"; 
+
+    while (player_total <= 17) {
+      hitPlayer();
+    }
+    missPlayer();
   }
   else{
     document.getElementById("player-hit").disabled = false;
