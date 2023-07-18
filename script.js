@@ -1,18 +1,8 @@
 let folder = "cards/"
-let prefix = ["ace_of_",
-          "2_of_",
-          "3_of_",
-          "4_of_",
-          "5_of_",
-          "6_of_",
-          "7_of_",
-          "8_of_",
-          "9_of_",
-          "10_of_",
-          "jack_of_",
-          "queen_of_",
-          "king_of_"];
+let prefix = ["ace_of_","2_of_","3_of_","4_of_","5_of_","6_of_","7_of_",
+              "8_of_","9_of_","10_of_","jack_of_","queen_of_","king_of_"];
 
+let player_type = "";
 let ext = '.png'
 let selected = [];
 let player_cards = []
@@ -232,8 +222,8 @@ function dealerPlays() {
   } 
   else if (player_total > dealer_total) {
     document.getElementById("turn").textContent = `Player WON $${bet}!!`;
-    document.getElementById("balance-amt").textContent = player_balance;
     player_balance += 2 * bet;
+    document.getElementById("balance-amt").textContent = player_balance;
   } else {
     document.getElementById("turn").textContent = `Dealer WON $${bet}!!`;
   }
@@ -263,6 +253,14 @@ function placeBet() {
   else{
     document.getElementById("bet-amt").value = "";
     alert("1. bet must me in multiples of 50\n2. Bet must be in the range of $50 and $"+player_balance)
+  }
+
+  if (player_type == "AI") {
+    while (player_total <= 17) {
+      console.log("player hit");
+      hitPlayer();
+    }
+    missPlayer();
   }
 
 }
@@ -301,24 +299,19 @@ function replay() {
 }
 
 function selectPlayer(player_radio) {
+  player_type = player_radio.value;
   // console.log(player_radio.value);
-  if( player_radio.value == 'AI'){
+  if (player_type == "AI") {
     document.getElementById("player-hit").disabled = true;
     document.getElementById("player-miss").disabled = true;
     document.getElementById("player-hit").style.display = "none";
-    document.getElementById("player-miss").style.display = "none"; 
-    document.getElementById("AI-player").style.display = "block"; 
-
-    while (player_total <= 17) {
-      hitPlayer();
-    }
-    missPlayer();
-  }
-  else{
+    document.getElementById("player-miss").style.display = "none";
+    document.getElementById("AI-player").style.display = "block";
+  } else {
     document.getElementById("player-hit").disabled = false;
     document.getElementById("player-miss").disabled = false;
     document.getElementById("AI-player").style.display = "none";
     document.getElementById("player-hit").style.display = "inline";
-    document.getElementById("player-miss").style.display = "inline"; 
+    document.getElementById("player-miss").style.display = "inline";
   }
 }
