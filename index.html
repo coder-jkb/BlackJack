@@ -6,10 +6,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Recursive&display=swap" rel="stylesheet">
-    <title>BlackJack ♠️</title>
+    <link rel="shortcut icon" href="blackjack.jpg" type="image/x-icon">
+    <title>BlackJack♠️</title>
 </head>
 <style>
     body{
+        margin-top: 0;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -23,9 +26,19 @@
         font-family: 'Recursive', sans-serif;
         
     }
+    .logo {
+        height: 40px;
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        border-radius: 5px;
+    }
     h2{
         margin-top: 0px;
         margin-bottom: 10px;
+        width: 100vw;
+        text-align: center;
+        background-color: rgba(100, 100, 100,0.25);
     }
     #bet-amt{
         height: 25px;
@@ -99,6 +112,20 @@
         #player, #dealer{
             width: 75%;
         }
+        body{
+            /* background-size: 1100px; */
+        }
+    }
+
+    @media screen and (max-width: 1020px) {
+        body{
+            background-size: 1100px;
+        }
+    }
+    @media screen and (max-width: 550px) {
+        body{
+            background-size: 1250px;
+        }
     }
 
     @media screen and (max-width: 480px) {
@@ -111,10 +138,20 @@
         #player, #dealer{
             width: 95%;
         }
+        body{
+            overflow:hidden;
+            background-image: url("bg2.png");
+            background-size: 500px;
+        }
+        h2{
+            font-size:1.75rem;
+            height: 45px;
+        }
     }
 </style>
 <body>
 <h2> 
+    <img src="./blackjack.jpg" class="logo" alt="logo">
     <span style="color:black">♠️ </span><span style="color:red">♥️ </span>
     <b>Black Jack</b><span style="color:red"> ♦️</span>
     <span style="color:black">♣️</span>

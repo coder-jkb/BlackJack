@@ -210,14 +210,17 @@ function dealerPlays() {
   while (dealer_total <= 17) {
     hitDealer();
   }
+
+  player_total = 10;
+  dealer_total = 10;
   // dealer's turn is over, Now its decision time
   if (player_total == dealer_total) {
     document.getElementById("turn").textContent = "It's a DRAW !!!";
-    player_balance += bet;
+    player_balance = player_balance + Number(bet);
     document.getElementById("balance-amt").textContent = player_balance;
   } else if (player_total == 21) {
     document.getElementById("turn").textContent = `Player got a Black Jack. Player WON $${bet}!!`;
-    player_balance += 2*bet;
+    player_balance += 2 * bet;
     document.getElementById("balance-amt").textContent = player_balance;
 
   } else if (dealer_total == 21) {
