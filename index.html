@@ -7,12 +7,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Recursive&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="blackjack.jpg" type="image/x-icon">
-    <title>BlackJack♠️</title>
+    <title>BlackJack</title>
 </head>
 <style>
     body{
         margin-top: 0;
-        overflow: hidden;
+        /* overflow: hidden; */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -70,6 +70,10 @@
         padding:5px 10px;
         margin:5px;
         min-width: 80px;
+        cursor: pointer;
+    }
+    .suggested-bets:hover{
+        background-color:rgba(112, 150, 0, 0.5);
     }
     .bet-btns{
         display: inline;
@@ -134,9 +138,6 @@
     @media screen and (max-width: 700px) {
         #player, #dealer{
             width: 75%;
-        }
-        body{
-            /* background-size: 1100px; */
         }
     }
 
@@ -218,6 +219,12 @@
     <br>
     <input type="radio" id="AI" name="player-selection"  onchange="selectPlayer(this)" value="AI"> <label for="AI">AI player</label>
     <input type="radio" id="Human" name="player-selection" onchange="selectPlayer(this)" value="Human" checked > <label for="Human">Huamn player</label>
+    <br>
+    <span id="SpanAutoPlayAI" style="visibility: hidden;">
+        <input type="checkbox" value=1 name="AutoPlayAI" id="AutoPlayAI"><label for="AutoPlayAI"> AI Auto Play</label>
+        (auto play will stop after 100 games)
+    </span>
+    
 </div>
 <div unselectable="on"
  onselectstart="return false;" 
@@ -227,7 +234,7 @@
     </div>
     <div id="player">
         <button id="player-hit" class="player-btn" onclick="hitPlayer()">Hit</button>
-        <button id="player-miss" class="player-btn" onclick="missPlayer()">Pass</button>
+        <button id="player-miss" class="player-btn" onclick="missPlayer()">Stand</button>
         <div id="AI-player" style="display:none;font-size: 2rem;">AI</div> <br>
         <b>Player</b>
         Total:<span id="player-total"></span>
@@ -245,5 +252,6 @@
     </div>
 </div>
 <script src="script.js"></script>
+<!-- <script src="RL.js"></script>-->
 </body>
 </html>
